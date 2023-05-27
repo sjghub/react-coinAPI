@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Router from "./Router";
+import { createGlobalStyle } from "styled-components";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./theme";
+const GlobalStyle = createGlobalStyle`
+  *{
+  box-sizing: border-box;
+  }
+  body {
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    background-color: ${(props) => props.theme.bgColor};
+    color:${(props) => props.theme.textColor};
+    color:${(props) => props.theme.textColor};
+    line-height: 1.2;
+  }
+  a{
+    text-decoration: none;
+    color:inherit;
+  }
+`;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
+    </>
   );
 }
 
