@@ -2,7 +2,7 @@
 
 show coin chart and price
 
-Using:
+### Using:
 Styled Components
 Recoil
 React helmet
