@@ -6,7 +6,7 @@ show coin chart and price
 - Styled Components
 - Recoil
 - React helmet
-React Query
-React Router DOM
-Apex Charts
-Typescript
+- React Query
+- React Router DOM
+- Apex Charts
+- Typescript
